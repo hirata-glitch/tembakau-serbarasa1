@@ -11,12 +11,18 @@
   <body>
     <header>
       <div class="logo">Tembakau Serbarasa</div>
+      <div class="menu-toggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
       <nav>
         <ul>
           <li><a href="#">Beranda</a></li>
           <li><a href="Produk Kami.html">Produk</a></li>
           <li><a href="tentang.html">Tentang</a></li>
-          <li><a href="#">Kontak</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
         </ul>
       </nav>
     </header>
@@ -24,7 +30,8 @@
     <section class="hero">
       <h1>Selamat Datang di Tembakau Serbarasa</h1>
       <p>Rasakan dan Temukan Tembakau Pilihan Anda</p>
-      <a <a href="https://wa.me/6282299999202?text=Halo,%20saya%20mau%20pesan%20Tembakau%20Serbarasa." class="btn-small" target="_blank">Beli Sekarang</a>
+      <a <a href="Produk Kami.html" 
+      class="btn-small" target="_blank">Lihat Produk Kami</a>
 </a>
     </section>
 
@@ -40,7 +47,7 @@
           />
           <h3>Tembakau Premium</h3>
           <p>Rp 28.000/Ons</p>
-          <a href="#" class="btn-small">Beli Sekarang</a>
+          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
         </div>
         <div class="produk-card">
           <img
@@ -49,7 +56,7 @@
           />
           <h3>Tembakau Super Premium</h3>
           <p>Rp 35.000/Ons</p>
-          <a href="#" class="btn-small">Beli Sekarang</a>
+          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
         </div>
         <div class="produk-card">
           <img
@@ -58,7 +65,7 @@
           />
           <h3>Indobaco Varian Rasa</h3>
           <p>Rp 22.000/Ons</p>
-          <a href="#" class="btn-small">Beli Sekarang</a>
+          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
         </div>
       </div>
     </section>
@@ -66,5 +73,14 @@
     <footer>
       <p>© 2025 Toko Tembakau Serbarasa. Semua hak dilindungi.</p>
     </footer>
+    <script>
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav ul');
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+}
+</script>
   </body>
 </html>
