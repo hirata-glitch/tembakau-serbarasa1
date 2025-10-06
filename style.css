@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  line-height: 1.6;
+}
+
+/* ======= HEADER ======= */
+header {
+  background-color: #111;
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #d4a373;
+  letter-spacing: 0.5px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #f0f0f0;
+  text-decoration: none;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #d4a373;
+}
+
+/* ======= HERO ======= */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)),
+    url("https://images.unsplash.com/photo-1600359730787-98e8d1b7d9d6?auto=format&fit=crop&w=1400&q=80")
+      center/cover no-repeat;
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  color: #f8f8f8;
+}
+
+.btn-small {
+  display: inline-block;
+  background-color: #d4a373;
+  color: #1f1f1f;
+  padding: 10px 22px;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-small:hover {
+  background-color: #c98a5f;
+  transform: scale(1.05);
+}
+
+/* ======= PRODUK ======= */
+.produk-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: #1f1f1f;
+}
+
+.produk-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 35px;
+  color: #d4a373;
+  letter-spacing: 1px;
+}
+
+.produk-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+.produk-card {
+  background-color: #2c2c2c;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 280px;
+}
+
+.produk-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.produk-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.3s;
+}
+
+.produk-card h3 {
+  margin: 15px 0 8px;
+  font-size: 1.2rem;
+}
+
+.produk-card p {
+  color: #d4a373;
+  margin-bottom: 12px;
+}
+
+/* ======= FOOTER ======= */
+footer {
+  background-color: #111;
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 0.9rem;
+  color: #aaa;
+  border-top: 1px solid #333;
+}
+
+footer .peringatan {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #d4a373;
+  line-height: 1.4;
+}
+
+/* ======= AGE GATE ======= */
+.age-gate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.age-modal {
+  background: #2c2c2c;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 320px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+.age-modal h2 {
+  margin-bottom: 10px;
+  color: #d4a373;
+}
+
+.age-modal p {
+  margin-bottom: 20px;
+}
+
+.btn-small.danger {
+  background: #c0392b;
+}
+
+.btn-small.danger:hover {
+  background: #a83225;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .produk-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
