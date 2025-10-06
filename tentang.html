@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tentang Kami - Tembakau Serbarasa</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Tembakau Serbarasa</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="produk.html">Produk</a></li>
+          <li><a href="tentang.html" class="active">Tentang</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="tentang-hero">
+      <div class="overlay">
+        <h1>Tentang Kami</h1>
+        <p>
+          Kenali lebih dekat perjalanan dan dedikasi kami dalam menghadirkan
+          tembakau berkualitas tinggi.
+        </p>
+      </div>
+    </section>
+
+    <section class="tentang-content">
+      <div class="container">
+        <h2>Cerita Kami</h2>
+        <p>Kosong.</p>
+
+        <h2>Nilai Kami</h2>
+        <ul>
+          <li>
+            <strong>Kualitas:</strong>
+            <p>Dijamin asli dari petani petani di indonesia</p>
+          </li>
+          <li><strong>Keaslian:</strong> Kosong.</li>
+          <li><strong>Kepercayaan:</strong> Kosong</li>
+        </ul>
+        <h2>Lokasi Kami</h2>
+        <p>
+          Kunjungi kami secara langsung atau hubungi lewat WhatsApp untuk
+          pemesanan.
+        </p>
+        <div class="map-container">
+          <!-- Maps -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.193228057422!2d106.84005057475179!3d-6.369034893621132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69edbb96b5c637%3A0xc46e79600bcc2fa3!2sTEMBAKAU%20SERBARASA!5e0!3m2!1sid!2sid!4v1759768362088!5m2!1sid!2sid"
+            width="100%"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Toko Tembakau Serbarasa. Semua hak dilindungi.</p>
+    </footer>
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("nav ul");
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("active");
+        });
+      }
+    </script>
+  </body>
+</html>
