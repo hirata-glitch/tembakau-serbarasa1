@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kontak Kami - Tembakau Serbarasa</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo" onclick="window.location.href='index.html'">
+        Tembakau Serbarasa
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="produk.html">Produk</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="kontak.html" class="active">Kontak</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="kontak-hero">
+      <div class="overlay">
+        <h1>Hubungi Kami</h1>
+        <p>Kami siap membantu pesanan dan pertanyaan Anda</p>
+      </div>
+    </section>
+
+    <section class="kontak-section">
+      <div class="kontak-container fade-in">
+        <div class="kontak-card fade-in">
+          <i class="fa-brands fa-whatsapp"></i>
+          <h2>WhatsApp Kami</h2>
+          <p>Hubungi kami jika ingin langsung memesan</p>
+          <a
+            href="https://wa.me/6282299999202?text=Halo,%20saya%20tertarik%20dengan%20produk%20Tembakau%20Serbarasa."
+            target="_blank"
+            class="btn-wa"
+          >
+            <i class="fa-brands fa-whatsapp"></i> Chat Sekarang
+          </a>
+          <p class="nomor-wa">📞 +62 822-9999-9202</p>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Efek fade-in saat elemen muncul di layar
+      const fadeEls = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      });
+
+      fadeEls.forEach((el) => observer.observe(el));
+    </script>
+
+    <footer>
+      <p>© 2025 Toko Tembakau Serbarasa. Semua hak dilindungi.</p>
+    </footer>
+  </body>
+</html>
