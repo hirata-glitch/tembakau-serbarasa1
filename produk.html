@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Produk - Tembakau Serbarasa</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" type="image/png" href="/img/icon/bako.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -46,16 +47,29 @@
   </head>
   <body>
     <header>
-      <div class="logo">Tembakau Serbarasa</div>
+      <div class="logo">
+        <a href="../index.html">Tembakau Serbarasa</a>
+      </div>
       <nav>
         <ul>
-          <li><a href="index.html">Beranda</a></li>
+          <li><a href="../index.html">Beranda</a></li>
           <li><a href="produk.html" class="active">Produk</a></li>
           <li><a href="tentang.html">Tentang</a></li>
           <li><a href="kontak.html">Kontak</a></li>
-          <li><a href="cart.html">Keranjang</a></li>
         </ul>
       </nav>
+
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari disini"
+          onkeyup="handleSearch(event)"
+        />
+        <button onclick="handleSearchClick()">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
     </header>
 
     <main>
@@ -68,62 +82,62 @@
           <div class="swiper-wrapper">
             <!-- Slide 1 -->
             <div class="swiper-slide">
-              <div class="produk-card">
-                <img src="img/foto produk/a mild menthol.jpg" alt="" />
+              <div class="produk-card" data-name="Mild Menthol">
+                <img src="../img/foto produk/a mild menthol.jpg" alt="" />
                 <h3>Indobacco A Mild Menthol</h3>
                 <p>Rp 28.000/Ons</p>
                 <a href="#" class="btn-small add-to-cart">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/a mild.jpg" alt="" />
+                <img src="../img/foto produk/a mild.jpg" alt="" />
                 <h3>Indobacco A Mild</h3>
                 <p>Rp 35.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/dunhil hitam.jpg" alt="" />
+                <img src="../img/foto produk/dunhil hitam.jpg" alt="" />
                 <h3>Indobaco Dunhill Hitam</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/apel ice.jpg" alt="" />
+                <img src="../img/foto produk/apel ice.jpg" alt="" />
                 <h3>Indobacco Apple Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/apple.jpg" alt="" />
+                <img src="../img/foto produk/apple.jpg" alt="" />
                 <h3>Indobacco Apple</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/bubblegum.jpg" alt="" />
+                <img src="../img/foto produk/bubblegum.jpg" alt="" />
                 <h3>Indobacco Bubblegum Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/greentea ice.jpg" alt="" />
+                <img src="../img/foto produk/greentea ice.jpg" alt="" />
                 <h3>Indobacco Greentea ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/teh manis.jpg" alt="" />
+                <img src="../img/foto produk/teh manis.jpg" alt="" />
                 <h3>Indobacco Teh Manis</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/banana ice.jpg" alt="" />
+                <img src="../img/foto produk/banana ice.jpg" alt="" />
                 <h3>Indobacco Banana Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/berry pop ice.jpg" alt="" />
+                <img src="../img/foto produk/berry pop ice.jpg" alt="" />
                 <h3>Indobacco Berry Pop Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
@@ -133,61 +147,61 @@
             <!-- Slide 2 -->
             <div class="swiper-slide">
               <div class="produk-card">
-                <img src="img/foto produk/mango ice.jpg" alt="" />
+                <img src="../img/foto produk/mango ice.jpg" alt="" />
                 <h3>Indobacco Mango Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/melon ice.jpg" alt="" />
+                <img src="../img/foto produk/melon ice.jpg" alt="" />
                 <h3>Indobacco Melon Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/change juice.jpg" alt="" />
+                <img src="../img/foto produk/change juice.jpg" alt="" />
                 <h3>Indobacco Change Juice Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/guava ice.jpg" alt="" />
+                <img src="../img/foto produk/guava ice.jpg" alt="" />
                 <h3>Guava Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/blueberry ice.jpg" alt="" />
+                <img src="../img/foto produk/blueberry ice.jpg" alt="" />
                 <h3>Indobacco Blueberry Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/mango.jpg" alt="" />
+                <img src="../img/foto produk/mango.jpg" alt="" />
                 <h3>Indobacco Manggo</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/capucinno.jpg" alt="" />
+                <img src="../img/foto produk/capucinno.jpg" alt="" />
                 <h3>Indobacco Cappucino</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/coffee.jpg" alt="" />
+                <img src="../img/foto produk/coffee.jpg" alt="" />
                 <h3>Indobacco Coffee</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/coffee ice.jpg" alt="" />
+                <img src="../img/foto produk/coffee ice.jpg" alt="" />
                 <h3>Indobacco Coffee Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/strawberry.jpg" alt="" />
+                <img src="../img/foto produk/strawberry.jpg" alt="" />
                 <h3>Indobacco Strawberry</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
@@ -196,61 +210,61 @@
             <!--Slide 3-->
             <div class="swiper-slide">
               <div class="produk-card">
-                <img src="img/foto produk/cocktail.jpg"" />
+                <img src="../img/foto produk/cocktail.jpg"" />
                 <h3>Indobacco Cocktail</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/dunhil putih.jpg" alt="" />
+                <img src="../img/foto produk/dunhil putih.jpg" alt="" />
                 <h3>Indobacco Dunhill Putih</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/change juice.jpg" alt="" />
+                <img src="../img/foto produk/change juice.jpg" alt="" />
                 <h3>Indobacco Change Juice Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/guava ice.jpg" alt="" />
+                <img src="../img/foto produk/guava ice.jpg" alt="" />
                 <h3>Guava Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/blueberry ice.jpg" alt="" />
+                <img src="../img/foto produk/blueberry ice.jpg" alt="" />
                 <h3>Indobacco Blueberry Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/foto produk/mango.jpg" alt="" />
+                <img src="../img/foto produk/mango.jpg" alt="" />
                 <h3>Indobacco Manggo</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/gambar/joko1.jpg" alt="" />
+                <img src="../img/gambar/joko1.jpg" alt="" />
                 <h3>Indobacco Cappucino</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/gambar/ipeng.jpg" alt="" />
+                <img src="../img/gambar/ipeng.jpg" alt="" />
                 <h3>Indobacco Coffee</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/gambar/isal.jpg" alt="" />
+                <img src="../img/gambar/isal.jpg" alt="" />
                 <h3>Indobacco Coffee Ice</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
               </div>
               <div class="produk-card">
-                <img src="img/gambar/fadli1.jpg" alt="" />
+                <img src="../img/gambar/fadli1.jpg" alt="" />
                 <h3>Indobacco Strawberry</h3>
                 <p>Rp 22.000/Ons</p>
                 <a href="#" class="btn-small">Beli Sekarang</a>
@@ -380,6 +394,24 @@
           nav.classList.toggle("active");
         });
       }
+      // 🔍 Fungsi Pencarian Real-Time
+      const searchInput = document.getElementById("searchInput");
+      const produkCards = document.querySelectorAll(".produk-card");
+      const noResult = document.getElementById("noResult");
+
+      searchInput.addEventListener("input", function () {
+        const keyword = this.value.toLowerCase();
+
+        produkCards.forEach((card) => {
+          const name = card.querySelector("h3").innerText.toLowerCase();
+          if (name.includes(keyword)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+        swiper.slideTo(1);
+      });
     </script>
   </body>
 </html>
