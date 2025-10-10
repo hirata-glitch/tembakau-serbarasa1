@@ -186,7 +186,9 @@ nav ul li a.active {
 
 /* ==== HERO SECTION ==== */
 .hero {
-  background: url("img/foto lokasi/lokasi.jpg") center/cover no-repeat;
+  background: url("../img/foto lokasi/lokasi.jpg");
+  background-size: cover;
+  background-position: center;
   height: 85vh;
   display: flex;
   align-items: center;
@@ -194,6 +196,7 @@ nav ul li a.active {
   text-align: center;
   color: #fff;
   position: relative;
+  min-height: 100vh;
 }
 
 .hero::before {
