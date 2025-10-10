@@ -26,6 +26,52 @@ body {
 
 /* ================= HEADER ================= */
 
+/* 🔹 Header Transparan Khusus Landing Page */
+/* 🔹 Header Transparan dengan Efek Blur */
+.transparent-header {
+  background-color: rgba(0, 0, 0, 0.3); /* sedikit transparan */
+  backdrop-filter: blur(10px); /* efek kaca blur */
+  -webkit-backdrop-filter: blur(10px); /* biar jalan di Safari */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 40px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* 🔹 Warna teks di atas background terang */
+.transparent-header .logo a {
+  color: #d4a373;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.transparent-header nav a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.transparent-header nav a:hover {
+  color: #d4a373;
+}
+
+/* 🔹 Pastikan isi hero tidak ketimpa header */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding-top: 120px; /* biar teksnya gak ketiban */
+}
+
+/* Pastikan hero section naik ke atas dikit */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px; /* biar teksnya gak ketiban header */
+}
+
 header {
   background-color: #111;
   padding: 20px 40px;
@@ -72,56 +118,136 @@ nav a:hover {
   background: #f0f0f0;
   border-radius: 2px;
 }
+/* ==== HEADER RESPONSIVE ==== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #000;
+}
+
+.logo a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #d4a373;
+}
+
+/* Tombol hamburger (mobile) */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #d4a373;
+}
+
+/* Responsive untuk layar kecil */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: #111;
+    width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
 
 /* ================= HERO SECTION ================= */
 
+/* ==== HERO SECTION ==== */
 .hero {
-  background: url("https://images.unsplash.com/photo-1600359730787-98e8d1b7d9d6?auto=format&fit=crop&w=1400&q=80")
-    center/cover no-repeat;
-  height: 70vh;
+  background: url("img/foto lokasi/lokasi.jpg") center/cover no-repeat;
+  height: 85vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  color: white;
-  padding: 0 20px;
+  color: #fff;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 20px;
 }
 
 .hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3.2rem;
+  line-height: 1.2;
+  color: #f9f9f9;
+}
+
+.hero h2 span {
+  color: #d4a373;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .hero p {
+  font-family: "Cormorant Garamond", serif;
+  color: #e8e8e8;
   font-size: 1.2rem;
+  margin-top: 15px;
+  font-style: italic;
   margin-bottom: 20px;
 }
 
-.btn,
 .btn-small {
-  background-color: #d4a373;
+  background: #d4a373;
   color: #1f1f1f;
+  padding: 10px 19px;
   text-decoration: none;
-  border-radius: 30px;
+  border-radius: 17px;
+  font-weight: 600;
   transition: background 0.3s;
-  cursor: pointer;
 }
 
-.btn {
-  padding: 12px 24px;
-}
-
-.btn-small {
-  display: inline-block;
-  padding: 8px 16px;
-  margin-bottom: 15px;
-  border-radius: 20px;
-}
-
-.btn:hover,
 .btn-small:hover {
-  background-color: #c98a5f;
+  background: #c98a5f;
 }
 
 /* ================= PRODUK SECTION ================= */
@@ -152,6 +278,7 @@ nav a:hover {
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s;
+  padding-bottom: 20px;
 }
 
 .produk-card:hover {
@@ -172,30 +299,210 @@ nav a:hover {
   margin-bottom: 10px;
   color: #d4a373;
 }
+/* === HEADER ICONS === */
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-icons .search-btn,
+.header-icons .cart-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #f0f0f0;
+  font-size: 1.3rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header-icons .search-btn:hover,
+.header-icons .cart-icon:hover {
+  color: #d4a373;
+}
+
+.cart-icon .cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #d4a373;
+  color: #1f1f1f;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 3px 6px;
+}
+
+/* ============= EFEK CART =============*/
+.cart-count.bump {
+  animation: bump 0.3s ease;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Notifikasi kecil */
+/* Responsive Toast Fix */
+.toast {
+  position: fixed;
+  bottom: 30px; /* jarak aman biar gak ketiban nav bar HP */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(212, 163, 115, 0.95);
+  color: #1f1f1f;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+/* Pas toast aktif */
+.toast.show {
+  opacity: 1;
+  bottom: 50px;
+}
+
+/* Responsive di layar kecil */
+@media (max-width: 768px) {
+  .toast {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    bottom: 60px; /* lebih naik biar ga ketiban keyboard atau navbar */
+  }
+
+  .toast.show {
+    bottom: 80px;
+  }
+}
 
 /* ================= CART PAGE ================= */
 
+/* Animasi saat produk ditambahkan ke cart */
 .cart-item {
-  background: #2c2c2c;
-  padding: 15px;
+  background: #2b2b2b;
   border-radius: 10px;
-  margin-bottom: 15px;
-  text-align: left;
+  padding: 12px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 0.4s ease forwards;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.qty-input {
-  width: 60px;
-  padding: 5px;
+/* Efek hover di desktop */
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+/* Animasi muncul */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animasi keluar */
+.cart-item.fade-out {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.3s ease;
+}
+
+/* Tombol hapus tiap item */
+.cart-item .btn {
+  background: #d4a373;
+  color: #1f1f1f;
   border: none;
-  border-radius: 5px;
-  text-align: center;
-  margin: 5px;
-  background-color: #3a3a3a;
-  color: #fff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.cart-item .btn:hover {
+  background: #c98a5f;
+}
+.cart-count {
+  background: #d4a373;
+  color: #1f1f1f;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 8px;
+  font-size: 0.8rem;
+  margin-left: 3px;
+  transition: transform 0.2s ease;
 }
 
-.qty-input:focus {
-  outline: 2px solid #d4a373;
+.cart-count.pulse {
+  transform: scale(1.3);
+}
+
+/* Responsive fix untuk HP */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 80px; /* kasih ruang buat toast & tombol bawah */
+  }
+
+  .toast {
+    bottom: 10px;
+    right: 10px;
+    left: 10px; /* biar pas di tengah di layar kecil */
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cart-item button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cart-actions .btn {
+    width: 100%;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logo a {
+    font-size: 1.2rem;
+  }
 }
 
 /* ================= FOOTER ================= */
@@ -229,6 +536,13 @@ footer {
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
+  }
+  @media (max-width: 768px) {
+    .header-icons {
+      position: absolute;
+      top: 22px;
+      right: 20px;
+    }
   }
 
   nav ul {
