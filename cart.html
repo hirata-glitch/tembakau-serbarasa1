@@ -3,39 +3,287 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Keranjang Belanja - Tembakau Serbarasa</title>
+    <title>Keranjang - Tembakau Serbarasa</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="img/icon/bako.png" />
+    <style>
+      body {
+        background-color: #1f1f1f;
+        color: #f0f0f0;
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+
+      header {
+        background: rgba(17, 17, 17, 0.6);
+        backdrop-filter: blur(8px);
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo a {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #d4a373;
+        text-decoration: none;
+      }
+
+      main {
+        flex: 1;
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        text-align: center;
+        color: #d4a373;
+        margin-bottom: 30px;
+      }
+
+      .cart-item {
+        background: #2c2c2c;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .cart-item h3 {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .cart-item p {
+        color: #d4a373;
+        font-weight: bold;
+        margin: 5px 0 0;
+      }
+
+      .cart-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        background-color: #d4a373;
+        color: #1f1f1f;
+        padding: 12px 24px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #c98a5f;
+      }
+
+      .total {
+        text-align: right;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        color: #f0f0f0;
+      }
+
+      footer {
+        background-color: #111;
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+        color: #888;
+      }
+
+      /* Toast */
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(212, 163, 115, 0.95);
+        color: #1f1f1f;
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        z-index: 9999;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
+      }
+
+      @media (max-width: 768px) {
+        .toast {
+          bottom: 15px;
+          left: 15px;
+          right: 15px;
+          justify-content: center;
+          text-align: center;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <header>
-      <div class="logo">Tembakau Serbarasa</div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Beranda</a></li>
-          <li><a href="produk.html">Produk</a></li>
-          <li><a href="cart.html">Keranjang</a></li>
-        </ul>
-      </nav>
+      <div class="logo">
+        <a href="index.html">Tembakau Serbarasa</a>
+      </div>
+      <a href="pages/produk.html" class="btn">Lanjut Belanja</a>
     </header>
 
-    <section class="cart-section">
-      <h2>Keranjang Belanja</h2>
+    <main>
+      <h1>Keranjang Belanja Anda</h1>
       <div id="cart-items"></div>
+      <div class="total" id="total-harga">Total: Rp 0</div>
 
-      <div class="cart-summary">
-        <h3>Total: <span id="total-price">Rp 0</span></h3>
-        <a id="checkout-btn" class="btn-small" target="_blank"
-          >Checkout via WhatsApp</a
-        >
+      <div class="cart-actions">
+        <button id="clearCart" class="btn">Hapus Semua</button>
+        <button id="checkoutBtn" class="btn">Checkout ke WhatsApp</button>
       </div>
-
-      <button id="clear-cart" class="btn-small">Kosongkan Keranjang</button>
-    </section>
+    </main>
 
     <footer>
       <p>© 2025 Toko Tembakau Serbarasa. Semua hak dilindungi.</p>
     </footer>
 
-    <script src="cart.js"></script>
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      const cartItemsContainer = document.getElementById("cart-items");
+      const totalHargaElement = document.getElementById("total-harga");
+      const clearCartBtn = document.getElementById("clearCart");
+      const checkoutBtn = document.getElementById("checkoutBtn");
+
+      // Render keranjang
+      function renderCart() {
+        cartItemsContainer.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+          cartItemsContainer.innerHTML =
+            "<p style='text-align:center;'>Keranjang Anda kosong.</p>";
+        } else {
+          cart.forEach((item, index) => {
+            const itemElement = document.createElement("div");
+            itemElement.classList.add("cart-item");
+            itemElement.innerHTML = `
+              <div>
+                <h3>${item.name}</h3>
+                <p>${item.price}</p>
+              </div>
+              <button class="btn" onclick="removeItem(${index})">Hapus</button>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+
+            const harga = parseInt(item.price.replace(/\D/g, ""));
+            total += harga;
+          });
+        }
+
+        totalHargaElement.textContent =
+          "Total: Rp " + total.toLocaleString("id-ID");
+      }
+
+      // Hapus item
+      function removeItem(index) {
+        const removed = cart.splice(index, 1)[0];
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+        showToast(`${removed.name} dihapus dari keranjang 🗑️`);
+      }
+
+      // Toast message
+      function showToast(message, icon = "🛒") {
+        const oldToast = document.querySelector(".toast");
+        if (oldToast) oldToast.remove();
+
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = `<span>${icon}</span> ${message}`;
+        document.body.appendChild(toast);
+
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(20px)";
+        setTimeout(() => {
+          toast.style.opacity = "1";
+          toast.style.transform = "translateY(0)";
+        }, 100);
+
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(20px)";
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+
+      // Hapus semua
+      clearCartBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+          showToast("Keranjang sudah kosong!", "⚠️");
+          return;
+        }
+        cart = [];
+        localStorage.removeItem("cart");
+        renderCart();
+        showToast("Semua produk dihapus dari keranjang!", "🗑️");
+      });
+
+      // Checkout WA
+      checkoutBtn.addEventListener("click", () => {
+        if (cart.length === 0) {
+          showToast("Keranjang masih kosong!", "⚠️");
+          return;
+        }
+
+        let message = "Halo, saya ingin memesan produk berikut:%0A%0A";
+        let total = 0;
+
+        cart.forEach((item) => {
+          message += `• ${item.name} - ${item.price}%0A`;
+          total += parseInt(item.price.replace(/\D/g, ""));
+        });
+
+        message += `%0ATotal: Rp ${total.toLocaleString(
+          "id-ID"
+        )}%0A%0AAlamat pengiriman: `;
+
+        window.open(`https://wa.me/6282299999202?text=${message}`, "_blank");
+      });
+
+      renderCart();
+    </script>
   </body>
 </html>
