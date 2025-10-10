@@ -3,74 +3,470 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tembakau Serbarasa</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Produk - Tembakau Serbarasa</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" type="image/png" href="/img/icon/bako.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 
-    <!--Icon -->
-    <link rel="icon" type="image/png" href="/img/icon/bako.png" />
+    <style>
+      /* Style toast default (desktop) */
+      .toast {
+        position: fixed;
+        bottom: 40px;
+        right: 25px;
+        background: rgba(212, 163, 115, 0.97);
+        color: #1f1f1f;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        z-index: 99999;
+        backdrop-filter: blur(6px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      /* 📱 Atur posisi di HP biar ga kepotong */
+      @media (max-width: 768px) {
+        .toast {
+          bottom: 80px; /* ⬆️ Naik dari bawah biar aman di layar HP */
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 40px);
+          justify-content: center;
+          text-align: center;
+          font-size: 0.9rem;
+        }
+      }
+      /* Tambahan kecil buat slide */
+      .swiper {
+        width: 100%;
+        padding-bottom: 50px;
+      }
+
+      .swiper-slide {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #d4a373;
+        transition: color 0.3s;
+      }
+
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        color: #c98a5f;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #d4a373;
+      }
+    </style>
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="index.html">Tembakau Serbarasa</a>
+        <a href="../index.html">Tembakau Serbarasa</a>
       </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html">Beranda</a></li>
+          <li><a href="produk.html" class="active">Produk</a></li>
+          <li><a href="tentang.html">Tentang</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="../cart.html">Keranjang</a></li>
+        </ul>
+      </nav>
       <div class="menu-toggle">
         <span></span>
         <span></span>
         <span></span>
       </div>
 
-      <nav>
-        <ul>
-          <li><a href="index.html" class="active">Beranda</a></li>
-          <li><a href="pages/produk.html" class="active">Produk</a></li>
-          <li><a href="pages/tentang.html">Tentang</a></li>
-          <li><a href="pages/kontak.html">Kontak</a></li>
-        </ul>
-      </nav>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari disini"
+          onkeyup="handleSearch(event)"
+        />
+        <button onclick="handleSearchClick()">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <div class="header-icons">
+        <a href="../cart.html" class="cart-icon">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </a>
+      </div>
     </header>
 
-    <section class="hero">
-      <h1>Selamat Datang di Tembakau Serbarasa</h1>
-      <p>Rasakan dan Temukan Tembakau Pilihan Anda</p>
-      <a href="pages/produk.html" class="btn-small" target="_blank"
-        >Lihat Produk Kami</a
-      >
-    </section>
+    <main>
+      <section class="produk-section">
+        <h2>Daftar Produk Tembakau Serbarasa</h2>
+        <p>Pilih varian tembakau berkualitas sesuai selera Anda.</p>
 
-    <section id="Produk Kami" class="Porduk Kami"></section>
+        <!-- SLIDER -->
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <div class="produk-card" data-name="Mild Menthol">
+                <img src="../img/foto produk/a mild menthol.jpg" alt="" />
+                <h3>Indobacco A Mild Menthol</h3>
+                <p>Rp 28.000/Ons</p>
+                <a href="#" class="btn-small add-to-cart">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/a mild.jpg" alt="" />
+                <h3>Indobacco A Mild</h3>
+                <p>Rp 35.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/dunhil hitam.jpg" alt="" />
+                <h3>Indobaco Dunhill Hitam</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/apel ice.jpg" alt="" />
+                <h3>Indobacco Apple Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/apple.jpg" alt="" />
+                <h3>Indobacco Apple</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/bubblegum.jpg" alt="" />
+                <h3>Indobacco Bubblegum Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/greentea ice.jpg" alt="" />
+                <h3>Indobacco Greentea ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/teh manis.jpg" alt="" />
+                <h3>Indobacco Teh Manis</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/banana ice.jpg" alt="" />
+                <h3>Indobacco Banana Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/berry pop ice.jpg" alt="" />
+                <h3>Indobacco Berry Pop Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+            </div>
 
-    <section id="produk" class="produk-section">
-      <h2>Produk Unggulan</h2>
-      <div class="produk-container">
-        <div class="produk-card">
-          <img src="img/premium.jpg" alt="Varian Premium" />
-          <h3>Tembakau Premium</h3>
-          <p>Rp 28.000/Ons</p>
-          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <div class="produk-card">
+                <img src="../img/foto produk/mango ice.jpg" alt="" />
+                <h3>Indobacco Mango Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/melon ice.jpg" alt="" />
+                <h3>Indobacco Melon Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/change juice.jpg" alt="" />
+                <h3>Indobacco Change Juice Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/guava ice.jpg" alt="" />
+                <h3>Guava Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/blueberry ice.jpg" alt="" />
+                <h3>Indobacco Blueberry Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/mango.jpg" alt="" />
+                <h3>Indobacco Manggo</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/capucinno.jpg" alt="" />
+                <h3>Indobacco Cappucino</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/coffee.jpg" alt="" />
+                <h3>Indobacco Coffee</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/coffee ice.jpg" alt="" />
+                <h3>Indobacco Coffee Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/strawberry.jpg" alt="" />
+                <h3>Indobacco Strawberry</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+            </div>
+            <!--Slide 3-->
+            <div class="swiper-slide">
+              <div class="produk-card">
+                <img src="../img/foto produk/cocktail.jpg"" />
+                <h3>Indobacco Cocktail</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/dunhil putih.jpg" alt="" />
+                <h3>Indobacco Dunhill Putih</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/change juice.jpg" alt="" />
+                <h3>Indobacco Change Juice Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/guava ice.jpg" alt="" />
+                <h3>Guava Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/blueberry ice.jpg" alt="" />
+                <h3>Indobacco Blueberry Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/foto produk/mango.jpg" alt="" />
+                <h3>Indobacco Manggo</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/gambar/joko1.jpg" alt="" />
+                <h3>Indobacco Cappucino</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/gambar/ipeng.jpg" alt="" />
+                <h3>Indobacco Coffee</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/gambar/isal.jpg" alt="" />
+                <h3>Indobacco Coffee Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="../img/gambar/fadli1.jpg" alt="" />
+                <h3>Indobacco Strawberry</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+            </div>
+            <!--Slide 4-->
+            <div class="swiper-slide">
+              <div class="produk-card">
+                <img src="img/gambar/agam.jpg" alt="" />
+                <h3>Indobacco Mango Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="img/gambar/abdel.jpg" alt="" />
+                <h3>Indobacco Melon Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="img/gambar/dendi.jpg" alt="" />
+                <h3>Indobacco Change Juice Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="img/gambar/roro.jpg" alt="" />
+                <h3>Guava Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="img/gambar/tegarr.jpg" alt="" />
+                <h3>Indobacco Blueberry Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="kelapa.jpg" alt="" />
+                <h3>Indobacco Manggo</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="tar.jpg" alt="" />
+                <h3>Indobacco Cappucino</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="herbal.jpg" alt="" />
+                <h3>Indobacco Coffee</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="vanilalatte.jpg" alt="" />
+                <h3>Indobacco Coffee Ice</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+              <div class="produk-card">
+                <img src="cengkeh.jpg" alt="" />
+                <h3>Indobacco Strawberry</h3>
+                <p>Rp 22.000/Ons</p>
+                <a href="#" class="btn-small">Beli Sekarang</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigasi Slide -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
-        <div class="produk-card">
-          <img src="img/super premium.jpg" alt="Super Premium" />
-          <h3>Tembakau Super Premium</h3>
-          <p>Rp 35.000/Ons</p>
-          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
-        </div>
-        <div class="produk-card">
-          <img src="img/indacco.jpg" alt="Indobaco" />
-          <h3>Indobaco Varian Rasa</h3>
-          <p>Rp 22.000/Ons</p>
-          <!--<a href="#" class="btn-small">Beli Sekarang</a>-->
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer>
-      <p>© 2025 Toko Tembakau Serbarasa. Semua hak dilindungi.</p>
+      <p>© 2025 Tembakau Serbarasa. Semua hak dilindungi.</p>
+      <small class="peringatan">
+        ⚠️ Peringatan: Produk ini mengandung nikotin. Hanya untuk perokok dewasa
+        (18+).
+      </small>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        autoplay: false, // biar manual
+        speed: 700,
+        effect: "slide",
+        grabCursor: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+    </script>
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartCount = document.querySelector(".cart-count");
+      const cartIcon = document.querySelector(".cart-icon i");
+
+      document.querySelectorAll(".btn-small").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const card = e.target.closest(".produk-card");
+          const name = card.querySelector("h3").innerText;
+          const price = card.querySelector("p").innerText;
+          const img = card.querySelector("img");
+
+          // 🛍️ Tambah ke cart
+          cart.push({ name, price });
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          // 🔢 Update jumlah
+          if (cartCount) cartCount.textContent = cart.length;
+
+          // ✨ Efek gambar terbang
+          const flyImg = img.cloneNode();
+          const imgRect = img.getBoundingClientRect();
+          const cartRect = cartIcon.getBoundingClientRect();
+
+          flyImg.classList.add("fly-img");
+          flyImg.style.left = imgRect.left + "px";
+          flyImg.style.top = imgRect.top + "px";
+          flyImg.style.width = imgRect.width + "px";
+          flyImg.style.height = imgRect.height + "px";
+          document.body.appendChild(flyImg);
+
+          // Gerak ke icon cart
+          setTimeout(() => {
+            flyImg.style.left = cartRect.left + "px";
+            flyImg.style.top = cartRect.top + "px";
+            flyImg.style.width = "20px";
+            flyImg.style.height = "20px";
+            flyImg.style.opacity = "0";
+          }, 50);
+
+          // Hapus setelah animasi selesai
+          setTimeout(() => flyImg.remove(), 900);
+
+          // ✅ Toast kecil
+          const toast = document.createElement("div");
+          toast.className = "toast show";
+          toast.textContent = `${name} ditambahkan ke keranjang! 🛒`;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 2500);
+        });
+      });
+    </script>
     <script>
       const toggle = document.querySelector(".menu-toggle");
       const nav = document.querySelector("nav ul");
@@ -79,30 +475,70 @@
           nav.classList.toggle("active");
         });
       }
+      // 🔍 Fungsi Pencarian Real-Time
+      const searchInput = document.getElementById("searchInput");
+      const produkCards = document.querySelectorAll(".produk-card");
+      const noResult = document.getElementById("noResult");
+
+      searchInput.addEventListener("input", function () {
+        const keyword = this.value.toLowerCase();
+
+        produkCards.forEach((card) => {
+          const name = card.querySelector("h3").innerText.toLowerCase();
+          if (name.includes(keyword)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+        swiper.slideTo(1);
+      });
     </script>
     <script>
-      function handleSearch(event) {
-        if (event.key === "Enter") {
-          handleSearchClick();
-        }
-      }
+      document.addEventListener("DOMContentLoaded", () => {
+        // Ambil cart dari localStorage (kalau belum ada, buat array kosong)
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      function handleSearchClick() {
-        const query = document
-          .getElementById("searchInput")
-          .value.trim()
-          .toLowerCase();
-
-        if (!query) {
-          alert("Masukkan kata kunci pencarian!");
-          return;
+        // Cek apakah elemen .cart-count ada di halaman
+        const cartCount = document.querySelector(".cart-count");
+        if (cartCount) {
+          cartCount.textContent = cart.length;
         }
 
-        // Contoh sederhana: arahkan ke halaman produk dengan query
-        window.location.href = `Produk Kami.html?search=${encodeURIComponent(
-          query
-        )}`;
-      }
+        // Semua tombol beli sekarang
+        const buyButtons = document.querySelectorAll(".btn-small");
+
+        buyButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const card = e.target.closest(".produk-card");
+            const name =
+              card.querySelector("h3")?.innerText || "Produk Tidak Dikenal";
+            const price = card.querySelector("p")?.innerText || "Rp 0";
+
+            // Tambahkan produk ke cart
+            cart.push({ name, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Update angka cart
+            if (cartCount) {
+              cartCount.textContent = cart.length;
+
+              // Animasi kecil pas update
+              cartCount.classList.add("bump");
+              setTimeout(() => cartCount.classList.remove("bump"), 300);
+            }
+
+            // Notifikasi kecil
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerText = `${name} Produk berhasil ditambahkan`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+          });
+        });
+      });
     </script>
   </body>
 </html>
