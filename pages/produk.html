@@ -16,6 +16,38 @@
     />
 
     <style>
+      /* Style toast default (desktop) */
+      .toast {
+        position: fixed;
+        bottom: 40px;
+        right: 25px;
+        background: rgba(212, 163, 115, 0.97);
+        color: #1f1f1f;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        z-index: 99999;
+        backdrop-filter: blur(6px);
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      /* 📱 Atur posisi di HP biar ga kepotong */
+      @media (max-width: 768px) {
+        .toast {
+          bottom: 80px; /* ⬆️ Naik dari bawah biar aman di layar HP */
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 40px);
+          justify-content: center;
+          text-align: center;
+          font-size: 0.9rem;
+        }
+      }
       /* Tambahan kecil buat slide */
       .swiper {
         width: 100%;
@@ -56,8 +88,14 @@
           <li><a href="produk.html" class="active">Produk</a></li>
           <li><a href="tentang.html">Tentang</a></li>
           <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="../cart.html">Keranjang</a></li>
         </ul>
       </nav>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
       <div class="search-bar">
         <input
@@ -69,6 +107,12 @@
         <button onclick="handleSearchClick()">
           <i class="fa fa-search"></i>
         </button>
+      </div>
+      <div class="header-icons">
+        <a href="../cart.html" class="cart-icon">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="cart-count">0</span>
+        </a>
       </div>
     </header>
 
@@ -371,18 +415,55 @@
     </script>
     <script>
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartCount = document.querySelector(".cart-count");
+      const cartIcon = document.querySelector(".cart-icon i");
 
       document.querySelectorAll(".btn-small").forEach((button) => {
         button.addEventListener("click", (e) => {
-          e.preventDefault(); // biar gak reload
+          e.preventDefault();
+
           const card = e.target.closest(".produk-card");
           const name = card.querySelector("h3").innerText;
           const price = card.querySelector("p").innerText;
+          const img = card.querySelector("img");
 
+          // 🛍️ Tambah ke cart
           cart.push({ name, price });
           localStorage.setItem("cart", JSON.stringify(cart));
 
-          alert(`${name} berhasil ditambahkan ke keranjang! 🛍️`);
+          // 🔢 Update jumlah
+          if (cartCount) cartCount.textContent = cart.length;
+
+          // ✨ Efek gambar terbang
+          const flyImg = img.cloneNode();
+          const imgRect = img.getBoundingClientRect();
+          const cartRect = cartIcon.getBoundingClientRect();
+
+          flyImg.classList.add("fly-img");
+          flyImg.style.left = imgRect.left + "px";
+          flyImg.style.top = imgRect.top + "px";
+          flyImg.style.width = imgRect.width + "px";
+          flyImg.style.height = imgRect.height + "px";
+          document.body.appendChild(flyImg);
+
+          // Gerak ke icon cart
+          setTimeout(() => {
+            flyImg.style.left = cartRect.left + "px";
+            flyImg.style.top = cartRect.top + "px";
+            flyImg.style.width = "20px";
+            flyImg.style.height = "20px";
+            flyImg.style.opacity = "0";
+          }, 50);
+
+          // Hapus setelah animasi selesai
+          setTimeout(() => flyImg.remove(), 900);
+
+          // ✅ Toast kecil
+          const toast = document.createElement("div");
+          toast.className = "toast show";
+          toast.textContent = `${name} ditambahkan ke keranjang! 🛒`;
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 2500);
         });
       });
     </script>
@@ -411,6 +492,52 @@
           }
         });
         swiper.slideTo(1);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Ambil cart dari localStorage (kalau belum ada, buat array kosong)
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Cek apakah elemen .cart-count ada di halaman
+        const cartCount = document.querySelector(".cart-count");
+        if (cartCount) {
+          cartCount.textContent = cart.length;
+        }
+
+        // Semua tombol beli sekarang
+        const buyButtons = document.querySelectorAll(".btn-small");
+
+        buyButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const card = e.target.closest(".produk-card");
+            const name =
+              card.querySelector("h3")?.innerText || "Produk Tidak Dikenal";
+            const price = card.querySelector("p")?.innerText || "Rp 0";
+
+            // Tambahkan produk ke cart
+            cart.push({ name, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Update angka cart
+            if (cartCount) {
+              cartCount.textContent = cart.length;
+
+              // Animasi kecil pas update
+              cartCount.classList.add("bump");
+              setTimeout(() => cartCount.classList.remove("bump"), 300);
+            }
+
+            // Notifikasi kecil
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerText = `${name} Produk berhasil ditambahkan`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+          });
+        });
       });
     </script>
   </body>
