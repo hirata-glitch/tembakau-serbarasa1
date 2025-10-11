@@ -186,7 +186,7 @@ nav ul li a.active {
 
 /* ==== HERO SECTION ==== */
 .hero {
-  background: url("../img/foto lokasi/lokasi.jpg");
+  background: url("img/foto lokasi/lokasi.jpg");
   background-size: cover;
   background-position: center;
   height: 85vh;
@@ -901,5 +901,6 @@ footer {
 }
 
 /* ===== End of Kontak Page ===== */
+
 
 
